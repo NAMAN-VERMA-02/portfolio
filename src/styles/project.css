@@ -102,6 +102,35 @@
   color: var(--magenta);
 }
 
+.project__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+  padding: clamp(24px, 4vw, 48px) 0;
+}
+
+.project__gallery figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.project__gallery img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project__gallery figcaption {
+  padding-top: 10px;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .project__gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project__aside {
   display: grid;
   gap: 8px;

@@ -72,6 +72,12 @@ export default function Contact() {
               <li>
                 <a href={profile.github} target="_blank" rel="noreferrer">
                   <span className="eyebrow">GitHub</span>
+                  NAMAN-VERMA-02 <span className="arrow">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href={profile.github2} target="_blank" rel="noreferrer">
+                  <span className="eyebrow">GitHub 2</span>
                   eNVy-rights <span className="arrow">↗</span>
                 </a>
               </li>

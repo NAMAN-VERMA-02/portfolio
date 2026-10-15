@@ -8,7 +8,7 @@ import { projects } from '../data/projects.js';
 import { codex } from '../data/codex.js';
 import '../styles/home.css';
 
-const stack = ['React', 'JavaScript', 'C++', 'Java', 'Next.js', 'Python', 'Docker', 'Git', 'DSA', 'DBMS'];
+const stack = ['React', 'TypeScript', 'Three.js', 'JavaScript', 'C++', 'Java', 'Next.js', 'Python', 'Docker', 'Git', 'DSA'];
 
 export default function HomePage() {
   return (
@@ -22,7 +22,7 @@ export default function HomePage() {
           </p>
           <p className="intro__statement" data-reveal>
             I'm <em>Naman</em>, a Computer Science student at KIET who likes taking ideas from a blank page to something
-            people can actually use: web apps, hackathon builds and tools for AI agents.
+            people can actually use: web apps, a 3D board game, hackathon builds and tools for AI agents.
           </p>
           <dl className="intro__stats">
             {profile.stats.map((s, i) => (

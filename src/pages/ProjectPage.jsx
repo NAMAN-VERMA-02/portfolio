@@ -32,8 +32,8 @@ export default function ProjectPage({ project: p }) {
               </a>
             )}
             {p.live && (
-              <a className="btn btn--lime" href={p.live} target="_blank" rel="noreferrer" data-cursor="Visit">
-                Live site ↗
+              <a className="btn btn--lime" href={p.live} target="_blank" rel="noreferrer" data-cursor={p.liveLabel ? 'Play' : 'Visit'}>
+                {p.liveLabel || 'Live site'} ↗
               </a>
             )}
           </div>
@@ -68,6 +68,17 @@ export default function ProjectPage({ project: p }) {
             ))}
           </ol>
         </div>
+
+        {p.gallery && (
+          <div className="project__gallery">
+            {p.gallery.map((g) => (
+              <figure key={g.src} data-reveal="wipe">
+                <img src={g.src} alt={g.caption} loading="lazy" />
+                <figcaption className="eyebrow">{g.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
 
         <div className="project__block" data-reveal>
           <h2 className="eyebrow">03 / What I learned</h2>

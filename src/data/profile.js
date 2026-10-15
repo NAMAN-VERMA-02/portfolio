@@ -9,7 +9,8 @@ export const profile = {
   cgpa: '8.3',
   email: 'naman.2428cs1673@kiet.edu',
   linkedin: 'https://www.linkedin.com/in/naman-verma-851545328',
-  github: 'https://github.com/eNVy-rights',
+  github: 'https://github.com/NAMAN-VERMA-02',
+  github2: 'https://github.com/eNVy-rights',
   cv: '/Naman_Verma_CV.pdf',
   headline: ['I learn fast', 'and build things', 'that work'],
   bio: [
@@ -19,7 +20,7 @@ export const profile = {
   ],
   stats: [
     { value: '8.3', label: 'CGPA' },
-    { value: '2', label: 'Hackathons' },
+    { value: '6', label: 'Projects' },
     { value: '2', label: 'Certifications' },
     { value: '2028', label: 'Graduating' },
   ],

@@ -1,7 +1,7 @@
 import { Link } from '../router.jsx';
 
 export default function ProjectCard({ project, index, wide, order = 0 }) {
-  const { slug, title, tagline, description, tech, tag, repo, live, accent, date } = project;
+  const { slug, title, tagline, description, tech, tag, repo, live, liveLabel, accent, date } = project;
   const num = String(index).padStart(2, '0');
 
   return (
@@ -41,7 +41,7 @@ export default function ProjectCard({ project, index, wide, order = 0 }) {
         )}
         {live && (
           <a href={live} target="_blank" rel="noreferrer">
-            Live site <span className="arrow" aria-hidden="true">↗</span>
+            {liveLabel || 'Live site'} <span className="arrow" aria-hidden="true">↗</span>
           </a>
         )}
       </div>

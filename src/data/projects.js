@@ -3,6 +3,40 @@
 // accent: 'magenta' | 'lime' | 'pink' | 'ink' sets the hover colour.
 export const projects = [
   {
+    slug: 'bronze',
+    title: 'Bronze',
+    tagline: 'A free 3D strategy board game about canals, railways and industry.',
+    description:
+      'Build industries across the 1770s Midlands, link them with canals and then railways, and outplay up to three AI industrialists on a candle-lit Victorian tabletop. Runs in the browser with WebGL, no install.',
+    tech: ['TypeScript', 'Three.js', 'GSAP', 'Vite', 'Playwright'],
+    tag: 'Game',
+    repo: 'https://github.com/NAMAN-VERMA-02/bronze',
+    live: 'https://naman-verma-02.github.io/bronze/',
+    liveLabel: 'Play now',
+    date: 'Oct 2026',
+    featured: true,
+    accent: 'ink',
+    image: '/images/bronze-midgame.jpg',
+    gallery: [
+      { src: '/images/bronze-home.jpg', caption: 'Home: create a table, join one, or play with AI' },
+      { src: '/images/bronze-build-cards.jpg', caption: 'Pick a card: only that card’s build options appear' },
+      { src: '/images/bronze-network.jpg', caption: 'Network: every legal canal or rail link is a card' },
+    ],
+    context: 'Personal project · Browser game',
+    problem:
+      'Heavy economic board games are great but hard to get to the table: long setup, lots of rules, and you need three friends. I wanted one you can open in a browser tab and play alone in minutes.',
+    built: [
+      'A 3D tabletop in Three.js: a board with miniature industries, glowing routes and a hand of location cards.',
+      'The full rules engine in a shared TypeScript package: two eras (canals, then railways) and seven actions: build, network, develop, sell, loan, scout and pass.',
+      'AI rivals at three difficulty levels, for one to three opponents.',
+      'A card-first UI: pick a card, see exactly what it can build, preview the cost on the board, confirm.',
+      'A generative soundtrack, sound effects, an opening cinematic and autosave with Continue game.',
+      'Rules tests, randomized full-game smoke runs and Playwright browser tests, deployed to GitHub Pages.',
+    ],
+    learned:
+      'Separating the rules engine from the 3D client made both easier: the rules are testable without a browser, and the client only has to draw state. Also that game feel lives in small details like previews, sounds and timing.',
+  },
+  {
     slug: 'abhed',
     title: 'Abhed',
     tagline: 'An accountability OS for a workforce of people and AI agents.',
