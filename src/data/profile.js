@@ -1,0 +1,26 @@
+export const profile = {
+  name: 'Naman Verma',
+  role: 'Computer Science Student · Developer',
+  college: 'KIET Group of Institutions, Ghaziabad',
+  degree: 'B.Tech, Computer Science',
+  section: 'CS-C',
+  year: '3rd year',
+  graduation: 2028,
+  cgpa: '8.3',
+  email: 'naman.2428cs1673@kiet.edu',
+  linkedin: 'https://www.linkedin.com/in/naman-verma-851545328',
+  github: 'https://github.com/eNVy-rights',
+  cv: '/Naman_Verma_CV.pdf',
+  headline: ['I learn fast', 'and build things', 'that work'],
+  bio: [
+    "I'm Naman, a third-year Computer Science student (Section C) at KIET Group of Institutions, graduating in 2028. I like taking an idea from a blank page to something people can actually use.",
+    "Most of what I know comes from building: React apps, hackathon projects about AI agents and supply chains, and a lot of debugging. I'm comfortable with C++ and Java for problem solving and DSA, and JavaScript and React for the web.",
+    "I'm looking for an internship or entry-level software role where I can contribute to real projects, learn from good engineers and keep growing every day.",
+  ],
+  stats: [
+    { value: '8.3', label: 'CGPA' },
+    { value: '2', label: 'Hackathons' },
+    { value: '2', label: 'Certifications' },
+    { value: '2028', label: 'Graduating' },
+  ],
+};
