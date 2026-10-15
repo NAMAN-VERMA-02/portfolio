@@ -5,9 +5,48 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: var(--bar-h);
   -webkit-text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--magenta) var(--paper-soft);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+html.menu-open {
+  overflow: hidden;
+}
+
+/* Custom scrollbar (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-soft);
+  border-left: 1px solid var(--line);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta);
+  border: 2px solid var(--paper-soft);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink);
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--ink);
 }
 
 body {
@@ -53,6 +92,7 @@ h3 {
 
 .section-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 24px;
@@ -60,9 +100,10 @@ h3 {
 }
 
 .eyebrow {
+  font-family: var(--mono);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -143,9 +184,108 @@ textarea:focus-visible {
   white-space: nowrap;
 }
 
+/* Image that unveils with a wipe when it scrolls in.
+   The clip sits on the image, not the wrapper, so IntersectionObserver still sees the wrapper. */
+[data-reveal='wipe'] {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal='wipe'] img,
+[data-reveal='wipe'] > div {
+  clip-path: inset(100% 0 0 0);
+  transform: scale(1.15);
+  transition: clip-path 1.1s var(--ease), transform 1.6s var(--ease);
+}
+[data-reveal='wipe'].is-visible img,
+[data-reveal='wipe'].is-visible > div {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+
+.glyph {
+  font-variant-ligatures: none;
+}
+
+/* Accent fills used by cards and covers */
+.card-fill--magenta {
+  background: var(--magenta);
+  color: #fff;
+}
+.card-fill--lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+.card-fill--pink {
+  background: var(--pink);
+  color: var(--ink);
+}
+.card-fill--ink {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* Page-level headings */
+.page {
+  padding-top: var(--bar-h);
+  min-height: 100vh;
+}
+
+.page-hero {
+  padding: clamp(56px, 10vw, 140px) 0 clamp(40px, 6vw, 80px);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero__eyebrow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-hero__title {
+  font-size: clamp(48px, 14vw, 220px);
+  overflow-wrap: anywhere;
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.page-hero__lead {
+  max-width: 46ch;
+  margin: 32px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+}
+
+.next-page {
+  display: block;
+  padding: clamp(56px, 9vw, 120px) 0;
+  background: var(--paper-soft);
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.next-page__title {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(56px, 12vw, 190px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  transition: transform 0.6s var(--ease), color 0.3s;
+}
+
+.next-page:hover .next-page__title {
+  transform: translateX(2vw);
+  color: var(--magenta);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  [data-reveal='wipe'] img,
+  [data-reveal='wipe'] > div {
+    clip-path: none;
+    transform: none;
   }
   [data-reveal] {
     opacity: 1;

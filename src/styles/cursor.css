@@ -1,0 +1,95 @@
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: difference;
+  transition: opacity 0.2s, width 0.2s, height 0.2s, margin 0.2s;
+}
+
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 0;
+  height: 0;
+}
+
+/* the visible ring is a child so its size can animate without fighting transform */
+.cursor-ring::before {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: width 0.35s var(--ease), height 0.35s var(--ease), background 0.3s, border-color 0.3s;
+}
+
+.cursor-ring span {
+  position: absolute;
+  font: 600 11px/1 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s, transform 0.35s var(--ease);
+}
+
+.cursor-ring.is-link::before {
+  width: 58px;
+  height: 58px;
+}
+
+.cursor-ring.is-label::before {
+  width: 84px;
+  height: 84px;
+  background: var(--lime);
+  border-color: var(--lime);
+  mix-blend-mode: normal;
+}
+
+.cursor-ring.is-label span {
+  opacity: 1;
+  transform: none;
+}
+
+.cursor-dot.is-label,
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+.cursor-ring.is-text::before {
+  width: 2px;
+  height: 28px;
+  border-radius: 1px;
+  background: #fff;
+}
+
+.cursor-dot.is-text {
+  opacity: 0;
+}
+
+.cursor-ring.is-down::before {
+  width: 22px;
+  height: 22px;
+}
