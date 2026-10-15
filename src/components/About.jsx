@@ -1,17 +1,13 @@
 import { profile } from '../data/profile.js';
+import { Link } from '../router.jsx';
 import '../styles/about.css';
 
 export default function About() {
   return (
-    <section className="section about" id="about">
+    <section className="about" id="about">
       <div className="container">
-        <div className="section-head" data-reveal>
-          <h2 className="section-title">About</h2>
-          <span className="eyebrow">01 / Who I am</span>
-        </div>
-
         <div className="about__grid">
-          <figure className="about__photo" data-reveal>
+          <figure className="about__photo" data-reveal="wipe">
             <img src="/images/photo4.jpg" alt="Watercolour portrait of Naman smiling in a garden" loading="lazy" />
             <figcaption className="eyebrow">Ghaziabad, India</figcaption>
           </figure>
@@ -29,18 +25,18 @@ export default function About() {
               {profile.stats.map((s) => (
                 <div key={s.label}>
                   <dt className="eyebrow">{s.label}</dt>
-                  <dd>{s.value}</dd>
+                  <dd data-count={s.value}>{s.value}</dd>
                 </div>
               ))}
             </dl>
 
             <div className="about__actions">
-              <a className="btn btn--lime" href={profile.cv} download>
+              <a className="btn btn--lime" href={profile.cv} download data-cursor="PDF">
                 Download CV <span className="arrow" aria-hidden="true">↓</span>
               </a>
-              <a className="btn" href="#projects">
+              <Link className="btn" to="/work" label="Work">
                 See my work <span className="arrow" aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

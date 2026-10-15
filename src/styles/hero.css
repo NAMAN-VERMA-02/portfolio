@@ -105,6 +105,15 @@ a.tile::after {
   color: var(--ink);
 }
 
+.tile__num {
+  position: absolute;
+  top: clamp(14px, 1.6vw, 22px);
+  left: clamp(16px, 1.8vw, 24px);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
 .tile__label,
 .tile__arrow {
   font-size: 13px;
@@ -144,8 +153,76 @@ a.tile:hover::before {
   transition: color 0.5s var(--ease);
 }
 
-.hero__title span {
+.hero__line {
   display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.hero__line > span {
+  display: block;
+  transform: translateY(105%);
+  animation: line-up 1s var(--ease) forwards;
+}
+
+@keyframes line-up {
+  to {
+    transform: none;
+  }
+}
+
+.hero__scroll {
+  position: absolute;
+  z-index: 4;
+  right: clamp(16px, 1.8vw, 24px);
+  top: 50%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(-50%);
+  color: #fff;
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  pointer-events: none;
+}
+
+.hero__scroll i {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero__scroll i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--lime);
+  animation: scroll-hint 1.8s var(--ease) infinite;
+}
+
+@keyframes scroll-hint {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__line > span {
+    animation: none;
+    transform: none;
+  }
+  .hero__scroll i::after {
+    animation: none;
+  }
 }
 
 .hero__meta {

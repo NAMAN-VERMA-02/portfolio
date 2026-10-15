@@ -1,0 +1,67 @@
+.marquee {
+  overflow: hidden;
+  padding: 18px 0;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.marquee--paper {
+  color: var(--ink);
+}
+
+.marquee--night {
+  background: var(--night);
+  color: #f3f1ec;
+}
+
+.marquee--lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee__track.is-reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__track span {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.4vw, 64px);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-right: 32px;
+}
+
+.marquee__track em {
+  font-style: normal;
+  color: var(--magenta);
+  padding-left: 24px;
+  font-size: 0.55em;
+  vertical-align: middle;
+}
+
+.marquee--night .marquee__track em {
+  color: var(--lime);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}

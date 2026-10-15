@@ -1,3 +1,11 @@
+.journey {
+  padding: clamp(56px, 9vw, 120px) 0;
+}
+
+.journey__photo {
+  overflow: hidden;
+}
+
 .journey__grid {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

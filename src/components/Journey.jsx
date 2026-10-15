@@ -3,13 +3,8 @@ import '../styles/journey.css';
 
 export default function Journey() {
   return (
-    <section className="section journey" id="journey">
+    <section className="journey" id="journey">
       <div className="container">
-        <div className="section-head" data-reveal>
-          <h2 className="section-title">Journey</h2>
-          <span className="eyebrow">04 / Education, hackathons, certificates</span>
-        </div>
-
         <div className="journey__grid">
           <ol className="journey__list">
             {journey.map((j) => (
@@ -24,7 +19,7 @@ export default function Journey() {
             ))}
           </ol>
 
-          <figure className="journey__photo" data-reveal>
+          <figure className="journey__photo" data-reveal="wipe">
             <img src="/images/photo3.jpg" alt="Naman on a street in Delhi NCR wearing an event lanyard" loading="lazy" />
             <figcaption className="eyebrow">On the way to a hackathon · Delhi NCR</figcaption>
           </figure>

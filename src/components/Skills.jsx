@@ -1,4 +1,5 @@
 import { skills, softSkills } from '../data/skills.js';
+import GlyphText from './GlyphText.jsx';
 import '../styles/skills.css';
 
 export default function Skills() {
@@ -6,8 +7,10 @@ export default function Skills() {
     <section className="section skills" id="skills">
       <div className="container">
         <div className="section-head" data-reveal>
-          <h2 className="section-title">Skills</h2>
-          <span className="eyebrow">03 / What I work with</span>
+          <h2 className="section-title">
+            <GlyphText text="Skills" />
+          </h2>
+          <span className="eyebrow">What I work with</span>
         </div>
 
         <div className="skills__grid">

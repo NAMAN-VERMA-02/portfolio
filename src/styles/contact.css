@@ -1,7 +1,8 @@
 .contact {
+  min-height: 100vh;
   background: var(--night);
   color: #f3f1ec;
-  padding: clamp(72px, 11vw, 140px) 0;
+  padding: calc(var(--bar-h) + clamp(48px, 8vw, 110px)) 0 clamp(72px, 11vw, 140px);
 }
 
 .contact .eyebrow {

@@ -6,12 +6,12 @@ import '../styles/hero.css';
 // Order matches the 3×2 grid, left to right, top to bottom.
 // `at` is how far through the scroll (0–1) the tile fills with its colour.
 const tiles = [
-  { label: 'About', href: '#about', fill: 'night', at: 0.3 },
-  { label: 'Projects', href: '#projects', fill: 'magenta', at: 0.15 },
-  { label: 'Skills', href: '#skills', fill: 'night', at: 0.45 },
+  { label: 'About', to: '/about', fill: 'night', at: 0.3 },
+  { label: 'Work', to: '/work', fill: 'magenta', at: 0.15 },
+  { label: 'CodeX 3.0', to: '/codex', fill: 'night', at: 0.45 },
   { headline: true, fill: 'lime', at: 0.6 },
-  { label: 'Journey', href: '#journey', fill: 'night', at: 0.35 },
-  { label: 'Contact', href: '#contact', fill: 'pink', at: 0.5 },
+  { label: 'Journey', to: '/journey', fill: 'night', at: 0.35 },
+  { label: 'Contact', to: '/contact', fill: 'pink', at: 0.5 },
 ];
 
 export default function Hero() {
@@ -58,16 +58,24 @@ export default function Hero() {
             t.headline ? (
               <div key={i} className={`tile tile--headline tile--${t.fill} ${progress >= t.at ? 'is-filled' : ''}`}>
                 <h1 className="hero__title">
-                  {profile.headline.map((line) => (
-                    <span key={line}>{line}</span>
+                  <span className="sr-only">{profile.headline.join(' ')}</span>
+                  {profile.headline.map((line, li) => (
+                    <span key={line} className="hero__line" aria-hidden="true">
+                      <span style={{ animationDelay: `${0.25 + li * 0.12}s` }}>{line}</span>
+                    </span>
                   ))}
                 </h1>
               </div>
             ) : (
-              <Tile key={t.label} {...t} filled={progress >= t.at} />
+              <Tile key={t.label} {...t} index={i < 3 ? i + 1 : i} filled={progress >= t.at} />
             )
           )}
         </div>
+
+        <p className="hero__scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <i />
+        </p>
 
         <p className="hero__meta">
           {profile.degree} · {profile.section} · Class of {profile.graduation}

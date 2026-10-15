@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { profile } from '../data/profile.js';
+import GlyphText from './GlyphText.jsx';
 import '../styles/contact.css';
 
 const empty = { name: '', email: '', message: '', company: '' };
@@ -39,12 +40,12 @@ export default function Contact() {
     <section className="contact" id="contact">
       <div className="container">
         <div className="contact__head" data-reveal>
-          <span className="eyebrow">05 / Contact</span>
-          <h2 className="contact__title">
-            Let's build
+          <span className="eyebrow">06 / Contact</span>
+          <h1 className="contact__title">
+            <GlyphText text="Let's build" speed={24} />
             <br />
-            something
-          </h2>
+            <GlyphText text="something" speed={24} delay={200} />
+          </h1>
         </div>
 
         <div className="contact__grid">

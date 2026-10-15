@@ -1,15 +1,26 @@
-export default function ProjectCard({ project, index, wide }) {
-  const { title, tagline, description, tech, tag, repo, live, accent } = project;
+import { Link } from '../router.jsx';
+
+export default function ProjectCard({ project, index, wide, order = 0 }) {
+  const { slug, title, tagline, description, tech, tag, repo, live, accent, date } = project;
   const num = String(index).padStart(2, '0');
 
   return (
-    <article className={`card card--${accent} ${wide ? 'card--wide' : ''}`}>
+    <article
+      className={`card card--${accent} ${wide ? 'card--wide' : ''}`}
+      style={{ animationDelay: `${order * 70}ms` }}
+    >
       <div className="card__top">
         <span className="card__num">{num}</span>
-        <span className="card__tag">{tag}</span>
+        <span className="card__tag">
+          {tag} · {date}
+        </span>
       </div>
 
-      <h3 className="card__title">{title}</h3>
+      <h3 className="card__title">
+        <Link to={`/work/${slug}`} label={title} className="card__link" data-cursor="View">
+          {title}
+        </Link>
+      </h3>
       <p className="card__tagline">{tagline}</p>
       <p className="card__desc">{description}</p>
 
@@ -20,6 +31,9 @@ export default function ProjectCard({ project, index, wide }) {
       </ul>
 
       <div className="card__links">
+        <span className="card__more">
+          Case study <span className="arrow">→</span>
+        </span>
         {repo && (
           <a href={repo} target="_blank" rel="noreferrer">
             Code <span className="arrow" aria-hidden="true">↗</span>
@@ -30,7 +44,6 @@ export default function ProjectCard({ project, index, wide }) {
             Live site <span className="arrow" aria-hidden="true">↗</span>
           </a>
         )}
-        {!repo && !live && <span className="card__private">Team project · code private</span>}
       </div>
     </article>
   );

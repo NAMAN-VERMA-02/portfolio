@@ -1,42 +1,77 @@
 .footer {
   background: var(--lime);
   color: var(--ink);
-  padding: 40px 0 28px;
+  padding: 48px 0 24px;
+  overflow: hidden;
 }
 
 .footer__inner {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: end;
+  gap: 32px 24px;
+}
+
+.footer__nav,
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px 24px;
+  font: 500 13px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer__nav a,
+.footer__social a {
+  text-decoration: none;
+  padding: 6px 0;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.35s var(--ease);
+}
+
+.footer__nav a:hover,
+.footer__social a:hover {
+  background-size: 100% 1px;
 }
 
 .footer__mark {
-  margin: 0;
+  grid-column: 1 / -1;
+  margin: 24px 0 0;
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(48px, 10vw, 150px);
-  line-height: 0.85;
+  font-size: clamp(52px, 12.4vw, 210px);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-}
-
-.footer__motto {
-  margin: 0;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .footer__small {
   grid-column: 1 / -1;
-  margin: 24px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin: 0;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 13px;
 }
 
+.footer__small button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 @media (max-width: 640px) {
   .footer__inner {
     grid-template-columns: 1fr;
+  }
+  .footer__mark {
+    white-space: normal;
   }
 }

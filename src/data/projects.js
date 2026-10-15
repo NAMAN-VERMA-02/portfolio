@@ -1,63 +1,114 @@
-// To add a new project, add one object to this list. Newest first.
-// accent: 'magenta' | 'lime' | 'pink' | 'ink' sets the hover colour of the card.
+// To add a new project, add one object to the top of this list.
+// It gets a card on /work and its own page at /work/<slug> automatically.
+// accent: 'magenta' | 'lime' | 'pink' | 'ink' sets the hover colour.
 export const projects = [
   {
+    slug: 'abhed',
     title: 'Abhed',
     tagline: 'An accountability OS for a workforce of people and AI agents.',
     description:
-      'Built for CodeX 3.0 Hack Arena (PS5: AI agent governance). Every agent has a human owner, big actions wait for approval on a phone via QR, and every step lands in a tamper-evident, hash-chained ledger. Includes a kill switch outside the model and live prompt-injection defence.',
+      'Built at CodeX 3.0 Hack Arena (PS5: AI agent governance). Every agent has a human owner, big actions wait for approval on a phone via QR, and every step lands in a tamper-evident, hash-chained ledger.',
     tech: ['TypeScript', 'Next.js', 'React', 'Web Push', 'QR approvals'],
     tag: 'Hackathon',
     repo: 'https://github.com/eNVy-rights/abhed',
     live: null,
-    date: '2026-10',
+    date: 'Oct 2026',
     featured: true,
     accent: 'magenta',
+    image: '/images/codex-stage.jpg',
+    context: 'CodeX 3.0 · PIET Panipat · Team project',
+    problem:
+      'Companies are giving AI agents real power: refunds, data exports, production restarts. When something goes wrong, nobody can say which human was responsible, and rules written in a prompt can be ignored or bypassed.',
+    built: [
+      'Agent passports: every agent is owned by a named person, with limits on money, data and autonomy.',
+      'Approvals bound to a SHA-256 hash of the exact action. Change the amount by ₹1 and the approval is void.',
+      'Judges approve high-risk actions from their own phone by scanning a QR code, with push notifications.',
+      'An append-only, hash-chained ledger. Edit one row in the database and Verify points to the exact record.',
+      'A kill switch outside the model: Pause revokes the agent’s key at the gateway.',
+      'Twin Universe demo: the same prompt-injection attack with and without Abhed, side by side.',
+    ],
+    learned:
+      'How to design for failure first: assume the agent will be tricked, and make the system safe anyway. Also how to demo a complex idea in three minutes.',
   },
   {
+    slug: 'inventory-env',
     title: 'Inventory Replenishment Env',
     tagline: 'A reinforcement-learning environment for warehouse restocking.',
     description:
-      'Submission for the Meta × Scaler OpenEnv Hackathon. An agent decides how much to reorder per SKU each day to minimise holding cost, stockout penalties and order cost. Packaged with Docker.',
+      'Built for the Meta × Scaler OpenEnv Hackathon. An agent decides how much to reorder per SKU each day to keep total cost low. Packaged with Docker.',
     tech: ['Python', 'OpenEnv', 'Docker', 'RL'],
     tag: 'Hackathon',
     repo: 'https://github.com/eNVy-rights/inventory_env',
     live: null,
-    date: '2026-04',
+    date: 'Apr 2026',
     featured: true,
     accent: 'lime',
+    image: null,
+    context: 'Meta × Scaler OpenEnv Hackathon',
+    problem:
+      'Retail warehouses lose money two ways: holding too much stock, and running out. Training an agent to balance this needs a realistic, reproducible environment.',
+    built: [
+      'A day-by-day simulation of stock levels and customer demand for multiple SKUs.',
+      'A cost function: holding cost, stockout penalty and a fixed cost per order.',
+      'The OpenEnv interface so any agent can plug in, reset and step through episodes.',
+      'A Docker image that runs the environment as a service.',
+    ],
+    learned: 'How reward design shapes agent behaviour, and how to package an environment so others can use it.',
   },
   {
+    slug: 'taskify',
     title: 'Taskify',
     tagline: 'A task management web app with Kanban, KPIs and analytics.',
     description:
-      'Responsive dark-themed task manager. Kanban board for workflows, a dashboard with KPI cards and alerts, and Team and Analytics pages with leaderboards and trend indicators. State handled with React hooks and route-based layouts.',
+      'Responsive dark-themed task manager with a Kanban board, a KPI dashboard, and Team and Analytics pages with leaderboards and trend indicators.',
     tech: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'],
     tag: 'Web App',
     repo: 'https://github.com/eNVy-rights/Taskify',
     live: 'https://taskify-one-alpha.vercel.app',
-    date: '2026-04',
+    date: 'Apr 2026',
     featured: true,
     accent: 'pink',
+    image: null,
+    context: 'Personal project',
+    problem: 'Small teams need to see what is being worked on, what is stuck and who is overloaded, without a heavy tool.',
+    built: [
+      'A Kanban board for moving tasks through a workflow.',
+      'A dashboard with KPI cards and alerts.',
+      'Team and Analytics pages with leaderboards, member metrics and trend indicators.',
+      'State managed with React hooks and route-based rendering through a shared layout.',
+    ],
+    learned: 'Structuring a multi-page React app, and building a consistent dark UI with Tailwind.',
   },
   {
+    slug: 'shopeasy-debug',
     title: 'ShopEasy Debug Challenge',
     tagline: 'Found and fixed 9 logic bugs in a React shopping app.',
     description:
-      'A full-stack debugging assignment: the app compiled fine but behaved wrong. Fixed boundary bugs in price filters, broken category filtering, cart delete and quantity logic across four files.',
+      'The app compiled and ran without errors, but behaved wrong. Fixed boundary bugs in price filters, broken category filtering, and cart delete and quantity logic across four files.',
     tech: ['React', 'JavaScript', 'Debugging'],
     tag: 'Coursework',
     repo: 'https://github.com/eNVy-rights/MSE2FULLSTACK',
     live: null,
-    date: '2026-04',
+    date: 'Apr 2026',
     featured: false,
     accent: 'ink',
+    image: null,
+    context: 'KIET full-stack course',
+    problem: 'Logical bugs are the hardest kind: no error message, just wrong behaviour.',
+    built: [
+      'Fixed off-by-one price ranges so products at exactly ₹500 or ₹1,000 show up.',
+      'Fixed category buttons that never changed the product grid.',
+      'Fixed cart delete removing every item except the one clicked.',
+      'Fixed quantity and total calculations across four files.',
+    ],
+    learned: 'Reproduce first, then read the code. Most bugs were a single wrong operator or a stale piece of state.',
   },
   {
+    slug: 'manyaki',
     title: 'Manyaki',
     tagline: 'A talkative, interactive 3D VRM character.',
     description:
-      'Team project: a 3D VRM character with conversational features. I worked on testing and iterating on the user experience based on feedback.',
+      'Team project: a 3D VRM character with conversational features. I worked on testing and improving the user experience based on feedback.',
     tech: ['3D / VRM', 'Conversational AI', 'Team'],
     tag: 'Team Project',
     repo: null,
@@ -65,5 +116,15 @@ export const projects = [
     date: '2025',
     featured: false,
     accent: 'magenta',
+    image: null,
+    context: 'Collaborative project',
+    problem: 'Make a 3D character that feels alive to talk to, not like a chatbot with a face.',
+    built: [
+      'Tested conversation flows and character reactions.',
+      'Collected feedback and fed it into iterations on the experience.',
+    ],
+    learned: 'Working in a team on a product whose quality is about feel, not just features.',
   },
 ];
+
+export const findProject = (slug) => projects.find((p) => p.slug === slug);

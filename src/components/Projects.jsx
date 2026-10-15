@@ -10,13 +10,8 @@ export default function Projects() {
   const shown = active === 'All' ? projects : projects.filter((p) => p.tag === active);
 
   return (
-    <section className="section projects" id="projects">
+    <section className="projects">
       <div className="container">
-        <div className="section-head" data-reveal>
-          <h2 className="section-title">Projects</h2>
-          <span className="eyebrow">02 / What I've built</span>
-        </div>
-
         <div className="projects__filters" role="group" aria-label="Filter projects">
           {filters.map((f) => (
             <button
@@ -27,13 +22,20 @@ export default function Projects() {
               onClick={() => setActive(f)}
             >
               {f}
+              <sup>{f === 'All' ? projects.length : projects.filter((p) => p.tag === f).length}</sup>
             </button>
           ))}
         </div>
 
-        <div className="projects__grid">
+        <div className="projects__grid" key={active}>
           {shown.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={projects.indexOf(p) + 1} wide={i === 0 && active === 'All'} />
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              index={projects.indexOf(p) + 1}
+              wide={i === 0 && active === 'All'}
+              order={i}
+            />
           ))}
         </div>
       </div>

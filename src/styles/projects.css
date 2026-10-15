@@ -1,3 +1,13 @@
+.projects {
+  padding: clamp(40px, 6vw, 72px) 0 clamp(72px, 10vw, 120px);
+}
+
+.projects__filter sup {
+  margin-left: 4px;
+  font: 500 10px/1 var(--mono);
+  opacity: 0.6;
+}
+
 .projects__filters {
   display: flex;
   flex-wrap: wrap;
@@ -47,6 +57,45 @@
   border-bottom: 1px solid var(--line);
   isolation: isolate;
   transition: color 0.45s var(--ease);
+  animation: card-in 0.7s var(--ease) both;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* whole card is clickable through the title link */
+.card__link {
+  text-decoration: none;
+}
+
+.card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card__links a {
+  position: relative;
+  z-index: 2;
+}
+
+.card__more {
+  opacity: 0.7;
+}
+
+.card:hover .card__more .arrow {
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
 }
 
 .card::before {
@@ -156,6 +205,7 @@
 
 .card__links a {
   text-decoration: none;
+  z-index: 2;
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
 }
@@ -164,9 +214,6 @@
   transform: translate(3px, -3px);
 }
 
-.card__private {
-  opacity: 0.6;
-}
 
 @media (max-width: 760px) {
   .projects__grid {
