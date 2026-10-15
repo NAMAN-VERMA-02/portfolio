@@ -1,0 +1,63 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  pointer-events: none;
+}
+
+.curtain__panel {
+  transform: translateY(100%);
+}
+
+.curtain__panel--1 {
+  background: var(--magenta);
+}
+.curtain__panel--2 {
+  background: var(--night);
+}
+.curtain__panel--3 {
+  background: var(--lime);
+}
+
+.curtain.is-cover {
+  pointer-events: all;
+}
+
+.curtain.is-cover .curtain__panel {
+  transform: translateY(0);
+  transition: transform 0.5s var(--ease);
+}
+
+.curtain.is-cover .curtain__panel--2 {
+  transition-delay: 0.04s;
+}
+.curtain.is-cover .curtain__panel--3 {
+  transition-delay: 0.08s;
+}
+
+.curtain.is-reveal .curtain__panel {
+  transform: translateY(-100%);
+  transition: transform 0.6s var(--ease);
+}
+
+.curtain.is-reveal .curtain__panel--2 {
+  transition-delay: 0.05s;
+}
+.curtain.is-reveal .curtain__panel--3 {
+  transition-delay: 0.1s;
+}
+
+.curtain__label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--serif);
+  font-size: clamp(48px, 9vw, 140px);
+  text-transform: uppercase;
+  color: #fff;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+}
