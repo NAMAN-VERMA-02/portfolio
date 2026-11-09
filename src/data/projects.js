@@ -3,6 +3,114 @@
 // accent: 'magenta' | 'lime' | 'pink' | 'ink' sets the hover colour.
 export const projects = [
   {
+    slug: 'capproof',
+    title: 'CapProof',
+    tagline: 'Does your LLM spend cap hold when things go wrong?',
+    description:
+      'A fault-injection test suite for LLM gateways. It breaks things on purpose (bursts, dropped streams, missing usage data) and checks the result against a fake provider that keeps its own bill, so it trusts nothing the gateway says about itself. Ships with capd, a small reference gateway built to pass it.',
+    tech: ['Go', 'SQLite', 'Docker', 'GitHub Actions'],
+    tag: 'Infrastructure',
+    repo: 'https://github.com/NAMAN-VERMA-02/capproof',
+    live: null,
+    date: 'Nov 2026',
+    featured: true,
+    accent: 'lime',
+    image: null,
+    context: 'Personal project · Open source · v0.1.0',
+    problem:
+      'Most gateways count spend after a response arrives. A burst of parallel calls, a dropped stream or a response with no usage data can push the real bill well past the cap, and nobody finds out until the invoice.',
+    built: [
+      'Scenarios (burst, sequential, disconnect, a second wave) judged only by the fake provider’s bill: HELD, BREACHED or INCONCLUSIVE, so a broken setup never reads as a cap that held.',
+      'Two calibration gateways: a naive one that must be caught overspending and a strict one that must pass. CI checks the suite can tell them apart, because otherwise none of its other verdicts would mean anything.',
+      'capd, a reference gateway that writes a call’s worst-case cost to a durable SQLite ledger before forwarding, charges the full hold when the cost is unknown or the process crashes, and refuses calls when the ledger is down.',
+      'About 100 tests, including chaos tests through a fault proxy and a test that kills the gateway binary mid-stream. CI runs the race detector and a vulnerability scan.',
+      'Published results: 7 of 7 Docker scenarios held, and 10,000 random fault seeds produced no invariant violations. It also misses its own latency goal: about 53 ms added at p99 at 1,000 calls a second on a laptop against a 10 ms target, and the write-up says so.',
+    ],
+    learned:
+      'A test suite has to prove it can fail, which is why the naive gateway exists. And a result you missed is worth publishing: it makes the results you hit easier to believe.',
+  },
+  {
+    slug: 'scamcheck',
+    title: 'ScamCheck',
+    tagline: 'A scam checker for English and Hinglish that reports its own failures.',
+    description:
+      'An evidence-first checker that returns a verdict, the evidence behind it and what was not checked, plus a benchmark lab and an adversarial robustness lab. Every number so far comes from synthetic data and the README says so up front.',
+    tech: ['Python', 'FastAPI', 'Next.js', 'pytest', 'Hypothesis'],
+    tag: 'AI / Research',
+    repo: 'https://github.com/NAMAN-VERMA-02/scamcheck',
+    live: null,
+    date: 'Oct 2026',
+    featured: true,
+    accent: 'magenta',
+    image: null,
+    context: 'Personal project · Research prototype',
+    problem:
+      'Most scam checkers are chatbots with no measured error rates, and almost none are tested on Hinglish, the mix of Hindi and English people actually text in.',
+    built: [
+      'One engine behind both the API and the benchmark: rules, static URL analysis and an optional local model combine into LIKELY_SCAM, UNCLEAR or NO_STRONG_SIGNALS. A high-risk rule hit can never be overruled by the model.',
+      'A benchmark lab with five baselines on a frozen split, reporting false alarms per legitimate category and per language with Wilson and campaign-bootstrap intervals.',
+      'A robustness lab with 14 seeded transforms (zero-width characters, look-alike letters, Hinglish spellings, Devanagari mixing, prompt injection) that replay exactly.',
+      'About 200 tests, including property-based ones. CI regenerates the committed reports and fails if they differ.',
+      'Negative results published: the rule engine caught 9 of 12 scams written by its own author but only 4 of 16 written by someone else, and a small local model flagged 4 of 12 legitimate OTP and bank messages.',
+    ],
+    learned:
+      'With small samples the honest thing is to publish counts, not percentages, and to label synthetic data as synthetic. Rule silence also has to be told apart from reassurance.',
+  },
+  {
+    slug: 'agentreplay',
+    title: 'AgentReplay',
+    tagline: 'Regression tests for tool-using AI agents.',
+    description:
+      'Records what an agent sends to its LLM and its MCP servers, replays the run offline, and tests a changed prompt, model or agent against the recorded tool results. Gives a verdict and an exit code that CI can use. Early: no release yet.',
+    tech: ['Go', 'MCP', 'YAML policy', 'GitHub Actions'],
+    tag: 'Developer Tool',
+    repo: 'https://github.com/NAMAN-VERMA-02/agentreplay',
+    live: null,
+    date: 'Nov 2026',
+    featured: false,
+    accent: 'pink',
+    image: null,
+    context: 'Personal project · Open source · Early',
+    problem:
+      'Change an agent’s prompt or model and its behaviour can shift in ways a normal test never notices: a different tool, different arguments, a skipped step.',
+    built: [
+      'Three modes: record a baseline, replay it offline with no model and no MCP server, and test a changed agent while the tools answer from the recording so nothing real is touched.',
+      'Proxies for Anthropic Messages and OpenAI Chat Completions (non-streaming) plus MCP, so the agent needs no code changes.',
+      'A small policy file for required and forbidden tools, argument rules and checks on the final answer, compared at three levels: tool sequence, contract and output.',
+      'Verdicts SAME, CHANGED, INCONCLUSIVE and COULD_NOT_RUN with distinct exit codes, so a broken setup never reads as a pass. SAME only means no regression by the configured checks, and the report says when only structure was checked.',
+      '28 tests and CI.',
+    ],
+    learned:
+      'A regression tool must say what it did not check. Treating "I could not tell" as its own verdict, not a pass, is the core design decision.',
+  },
+  {
+    slug: 'mcpfuzz',
+    title: 'MCPFuzz',
+    tagline: 'Scan MCP servers for protocol bugs and security holes, and report only what it can prove.',
+    description:
+      'Starts an MCP server, works out which protocol version it speaks and checks it. A path traversal counts only when a random canary file’s contents come back; a shell injection counts only when an injected command creates a marker file. Early: no release yet.',
+    tech: ['Go', 'Docker', 'MCP', 'JSON-RPC'],
+    tag: 'Security',
+    repo: 'https://github.com/NAMAN-VERMA-02/mcpfuzz',
+    live: null,
+    date: 'Nov 2026',
+    featured: false,
+    accent: 'ink',
+    image: null,
+    context: 'Personal project · Open source · Early',
+    problem:
+      'MCP servers hand an AI model tools that touch files and run commands. Many follow the spec loosely, and a few can be turned against the machine they run on.',
+    built: [
+      'Passive checks that call no tools: version detection for both protocol eras, error codes, tool listing and schemas, and clean JSON-RPC on stdout.',
+      'Active checks on tools you allow: path traversal, shell injection, oversized input, wrong types, unknown tools and invalid JSON-RPC, each confirmed by evidence it observed itself.',
+      'Active mode runs only when mcpfuzz starts the server in Docker with no network, a read-only filesystem and dropped capabilities, because permission to test a server is not the same as isolation from it.',
+      'A deliberately vulnerable server and a fixed one that share code and differ only at each bug. CI runs both through the scanner on every push and checks every exit code.',
+      'Wording that looks like prompt injection is listed as suspicious but never changes the verdict. 20 tests and CI.',
+    ],
+    learned:
+      'A scanner earns trust by what it refuses to claim. Separating "confirmed" from "suspicious" kept false positives out of the verdict.',
+  },
+  {
     slug: 'bronze',
     title: 'Bronze',
     tagline: 'A free 3D strategy board game about canals, railways and industry.',
