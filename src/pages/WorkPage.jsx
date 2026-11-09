@@ -10,7 +10,7 @@ export default function WorkPage() {
         index="02 / Work"
         kicker={`${projects.length} projects · updated daily`}
         title="Work"
-        lead="Hackathon builds, web apps and coursework. Click any project for the full story: the problem, what I built and what I learned."
+        lead="Infrastructure and security tools, AI research, hackathon builds and web apps. Click any project for the full story: the problem, what I built and what I learned."
       />
       <Projects />
       <NextPage to="/codex" label="CodeX 3.0" />
